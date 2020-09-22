@@ -2,19 +2,31 @@
 #FONTS
 \*------------------------------------*/
 
+@font-face {
+    src: url('../fonts/Inter-Regular.woff2');
+    font-size: 400;
+    font-family: 'Inter-regular';
+}
+
+
 /*------------------------------------*\
 #Variables
 \*------------------------------------*/
 
 :root {
-
+    --global-color-alpha-light: #4F95FF;
+    --global-color-alpha: #3385FF;
+    --global-color-alpha-dark: #2E77E6;
 }
 
+
 /* CSS variables here */
+
 
 /*------------------------------------*\
 #GENERIC
 \*------------------------------------*/
+
 
 /*
     Generic: Page
@@ -25,12 +37,12 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: grey;
+    font-family: 'Inter-regular', Helvetica, arial, sans-serif;
+    color: #20223a;
+    background-color: #F5F6FA;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
 }
 
 *,
@@ -38,6 +50,7 @@ html {
 *:after {
     box-sizing: inherit;
 }
+
 
 /*
 * Remove text-shadow in selection highlight:
@@ -47,20 +60,22 @@ html {
 */
 
 ::-moz-selection {
-    background: HotPink;
+    background: #3385FF;
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: HotPink;
+    background: #3385FF;
     color: white;
     text-shadow: none;
 }
 
+
 /*------------------------------------*\
 #Elements
 \*------------------------------------*/
+
 
 /*
 Elements: Images
@@ -72,6 +87,7 @@ img {
     max-width: 100%;
     vertical-align: top;
 }
+
 
 /*
     Elements: typography
@@ -158,23 +174,37 @@ hr {
 }
 
 a {
-    color: HotPink;
+    color: var(--global-color-alpha);
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: HotPink;
+    color: var(--global-color-alpha);
 }
 
 a:hover,
 a:focus {
-    color: DeepPink;
+    color: var(--global-color-alpha-light);
 }
+
+
+/*
+    Elements: forms
+    ---
+    Default markup for forms
+*/
+
+input,
+label {
+    display: block;
+}
+
 
 /*------------------------------------*\
 #OBJECTS
 \*------------------------------------*/
+
 
 /*
     Objects: Row
@@ -189,7 +219,13 @@ a:focus {
 
 .o-row--login {
     /* stuff here to align the card */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 /* size modifiers */
 
@@ -217,6 +253,7 @@ a:focus {
     }
 }
 
+
 /*
     Objects: Container
     ---
@@ -226,9 +263,11 @@ a:focus {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 79.5em; /* 79.5 * 16px = 1272 */
+    max-width: 79.5em;
+    /* 79.5 * 16px = 1272 */
     width: 100%;
 }
+
 
 /*
     Objects: section
@@ -240,22 +279,23 @@ a:focus {
     position: relative;
 }
 
-.o-section + .o-section {
+.o-section+.o-section {
     padding-top: 24px;
 }
 
 @media (min-width: 768px) {
-    .o-section--lg + .o-section--lg,
-    .o-section--xl + .o-section--xl {
+    .o-section--lg+.o-section--lg,
+    .o-section--xl+.o-section--xl {
         padding-top: 48px;
     }
 }
 
 @media (min-width: 992px) {
-    .o-section--xl + .o-section--xl {
+    .o-section--xl+.o-section--xl {
         padding-top: 72px;
     }
 }
+
 
 /*
     Objects: Layout
@@ -276,13 +316,14 @@ a:focus {
     width: 100%;
 }
 
+
 /* gutter modifiers, these affect o-layout__item too */
 
 .o-layout--gutter {
     margin: 0 -12px;
 }
 
-.o-layout--gutter > .o-layout__item {
+.o-layout--gutter>.o-layout__item {
     padding: 0 12px;
 }
 
@@ -290,7 +331,7 @@ a:focus {
     margin: 0 -6px;
 }
 
-.o-layout--gutter-sm > .o-layout__item {
+.o-layout--gutter-sm>.o-layout__item {
     padding: 0 6px;
 }
 
@@ -298,7 +339,7 @@ a:focus {
     margin: 0 -24px;
 }
 
-.o-layout--gutter-lg > .o-layout__item {
+.o-layout--gutter-lg>.o-layout__item {
     padding: 0 24px;
 }
 
@@ -306,15 +347,17 @@ a:focus {
     margin: 0 -48px;
 }
 
-.o-layout--gutter-xl > .o-layout__item {
+.o-layout--gutter-xl>.o-layout__item {
     padding: 0 48px;
 }
+
 
 /* reverse horizontal row modifier */
 
 .o-layout--row-reverse {
     flex-direction: row-reverse;
 }
+
 
 /* Horizontal alignment modifiers*/
 
@@ -342,6 +385,7 @@ a:focus {
     justify-content: space-between;
 }
 
+
 /* Vertical alignment modifiers */
 
 .o-layout--align-start {
@@ -359,6 +403,7 @@ a:focus {
 .o-layout--align-baseline {
     align-items: baseline;
 }
+
 
 /* Vertical alignment modifiers that only work if there is one than one flex item */
 
@@ -382,6 +427,7 @@ a:focus {
     align-content: space-between;
 }
 
+
 /*
     Objects: List
     ---
@@ -392,6 +438,7 @@ a:focus {
     list-style: none;
     padding: 0;
 }
+
 
 /*
     Object: Button reset
@@ -406,25 +453,23 @@ a:focus {
     width: auto;
     overflow: visible;
     background: transparent;
-
     /* inherit font & color from ancestor */
     color: inherit;
     font: inherit;
-
     /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
     line-height: normal;
-
     /* Corrects font smoothing for webkit */
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
-
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
 }
 
+
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+
 
 /*
     Component: Logo
@@ -432,17 +477,81 @@ a:focus {
     Website main logo
 */
 
+.c-logo {
+    display: flex;
+    justify-content: center;
+    height: 24px;
+}
+
+.c-logo__inner-circle {
+    fill: #3385FF;
+}
+
+.c-logo__outer-circle {
+    fill: #1B4186;
+}
+
+.c-logo__text {
+    fill: #20223A;
+}
+
+.c-logo__symbol {
+    height: 100%;
+    display: block;
+}
+
+
 /*
     Component: Card
     ---
     Card with box shadow
 */
 
+.c-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E3E7;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-card__title {
+    font-size: 18px;
+    font-family: inherit;
+    padding: 48px;
+}
+
+.c-card__body {
+    width: 80%;
+}
+
+.c-card__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 24px;
+    padding: 11px;
+    width: 100%;
+    border-top: 1px solid #E2E3E7;
+    padding-top: 24px;
+}
+
+
 /*
     Component: Forms
     ---
     Everything form related here
 */
+
+.c-form-field {}
+
+.c-form-field--option {
+    display: flex;
+    align-items: center;
+}
+
 
 /*
     Component: Input
@@ -451,11 +560,26 @@ a:focus {
 */
 
 .c-input {
-
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    font-family: inherit;
+    color: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px;
+    outline: none;
 }
 
 .c-input:focus {
+    border-color: #3385FF;
+    border-width: 1px;
+    box-shadow: 0 0 0 3px #3385ff4d;
 }
+
 
 /*
     Component: Label
@@ -464,14 +588,22 @@ a:focus {
 */
 
 .c-label {
-
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 8px;
+    color: #606274;
 }
+
+.c-label--option {
+    margin-bottom: 0;
+    margin-left: 8px;
+}
+
 
 /* If a input is focused within the form-field class change te color of the label */
 
-.c-form-field:focus-within .c-label {
+.c-form-field:focus-within .c-label {}
 
-}
 
 /*
     Component: Button
@@ -480,28 +612,41 @@ a:focus {
 */
 
 .c-button {
-
+    background-color: #3385FF;
+    border: 1px solid #2E77E6;
+    font-size: 16px;
+    color: #FFFFFF;
+    width: 100%;
+    border-radius: 3px;
+    line-height: 24px;
+    padding: 11px;
 }
 
 .c-button:hover {
-
+    background-color: #4F95FF;
+    border-color: #2E77E6;
 }
 
 .c-button:focus {
-
+    background-color: #3385FF;
+    border-color: #2E77E6;
+    box-shadow: 0 0 0 3px rgba(21, 133, 255, 0.49);
+    outline: none;
 }
 
 .c-button:active {
-
+    background-color: #2E77E6;
+    border-color: #2E77E6;
+    outline: none;
 }
 
-.c-button--block {
+.c-button--block {}
 
-}
 
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
+
 
 /*
     Utilities: color
@@ -516,6 +661,7 @@ a:focus {
 .u-color-neutral-dark {
     color: Black;
 }
+
 
 /*
     Utilities: spacing
@@ -550,6 +696,7 @@ a:focus {
 .u-mb-xl {
     margin-bottom: 48px !important;
 }
+
 
 /*
     Utilities: max-width
@@ -592,6 +739,7 @@ a:focus {
     margin: 0 auto;
 }
 
+
 /*
     Utilities: text
     Utility classes to create smaller or bigger test
@@ -600,6 +748,7 @@ a:focus {
 .u-text-sm {
     font-size: 14px;
 }
+
 
 /*
     Utility: Widths
@@ -800,9 +949,11 @@ a:focus {
     }
 }
 
+
 /*------------------------------------*\
 #MEDIA
 \*------------------------------------*/
+
 
 /*
     Media Queries
@@ -812,25 +963,31 @@ a:focus {
     USE THEM INLINE!
 */
 
+
 /* Extra small devices (portrait phones, less than 576px)
 No media query since this is the default in mobile first design
 */
+
 
 /* Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {}
 */
 
+
 /* Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {}
 */
+
 
 /* Large devices (landscape tablets, desktops, 992px and up)
 @media (min-width: 992px) {}
 */
 
+
 /* Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {}
 */
+
 
 /*
     Print styles.
